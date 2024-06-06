@@ -1,28 +1,52 @@
+import re
 class Nonogram:
     size = 10  # Default size
     nums = [[]] * 2 * size # Default numbers are empty, columns first, then the row numbers
-    board = [[0] * size] * size
+    board = [[0] * size] * size # Sub array is each row, input as boolean array
+    correct = 0 # If the nums is the known, change to 1, if board is known, change to 2, change to 3 if solved
 
-    def __init__(self,size,nums=0,board=0):
-        if not(type(size)==int and size>0):
-            raise Exception("Size of board has to be a positive integer")
-        self.size = size
-        self.nums = [[]] * 2 * size
-        self.board = [[0] * size] * size
-        if nums==0 and board==0:
-            raise Exception("Empty board and numbers, please specify at least one")
-        elif nums!=0 and board!=0:
-            if not(len(nums)== 2*self.size and len(board)==self.size):
-                raise Exception("Numbers and boards are not the right dimensions.")
-            self.checkValid() # TODO: write checkValid()
-        elif nums!=0:
-            if not (len(nums) == 2 * self.size):
-                raise Exception("Numbers are not the right dimensions.")
-            self.nums=nums
+    def __init__(self, size, arr1, arr2=None):
+        if arr2==None:
+            if not (type(size) == int and size > 0):
+                raise Exception("Size of board has to be a positive integer")
+            self.size = size
+            self.nums = [[]] * 2 * size
+            self.board = [[0] * size] * size
+
+            if type(arr1[0][0]) == int:  # nums
+                if not (len(arr1) == 2 * self.size):
+                    raise Exception("Numbers are not the right dimensions.")
+                self.nums = arr1
+                self.correct = 1
+            elif type(arr1[0][0]) == bool:  # board
+                if not (len(arr1) == self.size):
+                    raise Exception("Board is not the right dimensions.")
+                self.board = arr1
+                self.correct = 2
+            else:
+                raise Exception("Input array is not the right dimensions")
+
         else:
-            if not (len(board)==self.size):
-                raise Exception("Board is not the right dimensions.")
-            self.board=board
+            if not(type(size)==int and size>0):
+                raise Exception("Size of board has to be a positive integer")
+            self.size = size
+            self.nums = [[]] * 2 * size
+            self.board = [[0] * size] * size
+
+            self.correct=1 # Default
+
+            if arr1!=0 and arr2!=0:
+                check=True
+                if not(len(arr1) == 2 * self.size and len(arr2) == self.size):
+                    check=False
+                for i in arr2:
+                    if len(i)!=self.size:
+                        check=False
+                if not check:
+                    raise Exception("Numbers and boards are not the right dimensions.")
+                self.checkValid() # TODO: write checkValid()
+                self.nums=arr1
+                self.board=arr2
 
     def __str__(self):
 
@@ -46,7 +70,13 @@ class Nonogram:
 
         string=string+"\n"
         for i in range(self.size):
-            string=string+sideNums[i]+"\t"+('\t'.join(str(x) for x in self.board[i]))+"\n" # Board itself
+            string = string + sideNums[i] + "\t"
+            for x in self.board[i]:
+                if x==True:
+                    string=string+"1\t"
+                else:
+                    string=string+"0\t"
+            string=string+"\n"
         return string
 
 
@@ -89,5 +119,13 @@ class Nonogram:
             topBar[i] = temp.rjust(topLength)
 
         return [topLength,topBar]
+
+    def renderRow(self,ind):
+        row="".join(self.board[ind])
+        return row
+
+
     def checkValid(self):
-        return 0
+        for i in range(0,self.size):
+            x=1
+

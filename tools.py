@@ -35,6 +35,16 @@ class Nonogram:
 
 
         string="Size: "+str(self.size)+"\n\n"+"Nums: "+str(self.nums)+"\n\n"+"Board:\n\n" # Headers
+
+        for i in range(topLength):
+            temp=""
+            temp = temp + " " * (sideLength+3)
+            for j in range(self.size):
+                temp=temp+topNums[j][i]+"\t"
+            temp=temp+"\n"
+            string=string+temp
+
+        string=string+"\n"
         for i in range(self.size):
             string=string+sideNums[i]+"\t"+('\t'.join(str(x) for x in self.board[i]))+"\n" # Board itself
         return string

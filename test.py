@@ -1,6 +1,11 @@
 import tools
+import re
 
 boardTest=tools.Nonogram(2,[[1,1],[2],[0],[2]],[[True, False],[False, False]])
 
-print(boardTest)
-print(boardTest.renderRow(0))
+bt=tools.Nonogram(2,[[2],[0],[1,0],[1,0]],[[True, False],[True, False]])
+print(bt)
+print(bt.checkValid())
+#
+# print(boardTest)
+# print(boardTest.renderRow(0))

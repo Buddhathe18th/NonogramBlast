@@ -133,6 +133,28 @@ class Nonogram:
         return col
 
     def checkValid(self):
-        for i in range(0,self.size):
-            x=1
+        check=True
+        # Check rows
+        for i in range(self.size):
+            regex="^0*"
+            for j in self.nums[i+self.size]:
+                regex=regex+"1{"+str(j)+"}0*"
+            regex=regex+"$"
+            row=self.renderRow(i)
+
+            if not re.match(regex,row):
+                check=False
+
+        # Check columns
+        for i in range(self.size):
+            regex="^0*"
+            for j in self.nums[i]:
+                regex=regex+"1{"+str(j)+"}0*"
+            regex=regex+"$"
+            col=self.renderCol(i)
+
+            if not re.match(regex,col):
+                check=False
+        return check
+
 

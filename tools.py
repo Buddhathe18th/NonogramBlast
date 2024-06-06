@@ -22,22 +22,6 @@ class Nonogram:
         sideLength= self.renderSideNums()[0]
 
 
-        topLength=0 # How many to shift down
-        for i in range(0,self.size):
-            temp=len(self.nums[i])-1
-            for j in self.nums[i]:
-                temp = temp + len(str(j))
-
-            if topLength < temp:
-                topLength = temp
-
-
-
-
-
-
-
-
         string="Size: "+str(self.size)+"\n\n"+"Nums: "+str(self.nums)+"\n\n"+"Board:\n\n" # Headers
         for row in self.board:
             string=string+('\t'.join(str(x) for x in row))+"\n" # Board itself
@@ -64,5 +48,24 @@ class Nonogram:
 
         return [sideLength,sideBar]
 
+    def renderTopNums(self):
+        topLength=0 # How many to shift down
+        for i in range(0,self.size):
+            temp=len(self.nums[i])-1
+            for j in self.nums[i]:
+                temp = temp + len(str(j))
+
+            if topLength < temp:
+                topLength = temp
+
+        topBar = [""] * self.size
+        for i in range(self.size):
+            temp = ""
+            for j in self.nums[i]:
+                temp = temp + str(j) + " "
+            temp = temp[:-1]
+            topBar[i] = temp.rjust(topLength)
+
+        return [topLength,topBar]
     def checkValid(self):
         return 0

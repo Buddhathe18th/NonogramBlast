@@ -6,7 +6,8 @@ class Nonogram:
     def __init__(self,size,nums=0,board=0):
         self.size = size
         if nums==0 and board==0:
-            raise Exception("Empty board and numbers, please specify at least one")
+            # raise Exception("Empty board and numbers, please specify at least one")
+            x=1
         elif nums!=0 and board!=0:
             self.checkValid() # TODO: write checkValid()
         elif nums!=0:
@@ -15,11 +16,13 @@ class Nonogram:
             self.board=board
 
     def __str__(self):
-        print("Size: "+str(self.size)+"\n\n")
-        print("Nums: "+str(self.nums)+"\n\n")
-        print("Board:\n\n")
+
+        string="Size: "+str(self.size)+"\n\n"+"Nums: "+str(self.nums)+"\n\n"+"Board:\n\n"
         for row in self.board:
-            print(*row, sep="\t")
+            string=string+('\t'.join(str(x) for x in row))+"\n"
+        return(string)
+
+
         # for i in nums[]
 
 

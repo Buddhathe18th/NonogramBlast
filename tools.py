@@ -121,9 +121,16 @@ class Nonogram:
         return [topLength,topBar]
 
     def renderRow(self,ind):
-        row="".join(self.board[ind])
+        row=""
+        for i in range(self.size):
+            row=row+str(int(self.board[ind][i]))
         return row
 
+    def renderCol(self,ind):
+        col=""
+        for i in range(self.size):
+            col = col + str(int(self.board[i][ind]))
+        return col
 
     def checkValid(self):
         for i in range(0,self.size):

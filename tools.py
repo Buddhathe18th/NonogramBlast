@@ -19,14 +19,7 @@ class Nonogram:
 
     def __str__(self):
 
-        sideLength=0 # How many to shift right
-        for i in range(self.size,2*self.size):
-            temp=len(self.nums[i])-1
-            for j in self.nums[i]:
-                temp = temp + len(str(j))
-
-            if sideLength < temp:
-                sideLength = temp
+        sideLength= self.renderSideNums()[0]
 
 
         topLength=0 # How many to shift down
@@ -51,7 +44,25 @@ class Nonogram:
         return string
 
 
+    def renderSideNums(self):
+        sideLength = 0  # How many to shift right
+        for i in range(self.size, 2 * self.size):
+            temp = len(self.nums[i]) - 1
+            for j in self.nums[i]:
+                temp = temp + len(str(j))
 
+            if sideLength < temp:
+                sideLength = temp
+
+        sideBar=[""]*self.size
+        for i in range(self.size):
+            temp=""
+            for j in self.nums[i+self.size]:
+                temp=temp+str(j)+" "
+            temp=temp[:-1]
+            sideBar[i]=temp.rjust(sideLength)
+
+        return [sideLength,sideBar]
 
     def checkValid(self):
         return 0

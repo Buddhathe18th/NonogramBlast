@@ -7,24 +7,36 @@ class Nonogram:
         if not(type(size)==int and size>0):
             raise Exception("Size of board has to be a positive integer")
         self.size = size
+        self.nums = [[]] * 2 * size
+        self.board = [[0] * size] * size
         if nums==0 and board==0:
-            # raise Exception("Empty board and numbers, please specify at least one")
-            x=1
+            raise Exception("Empty board and numbers, please specify at least one")
         elif nums!=0 and board!=0:
+            if not(len(nums)== 2*self.size and len(board)==self.size):
+                raise Exception("Numbers and boards are not the right dimensions.")
             self.checkValid() # TODO: write checkValid()
         elif nums!=0:
+            if not (len(nums) == 2 * self.size):
+                raise Exception("Numbers are not the right dimensions.")
             self.nums=nums
         else:
+            if not (len(board)==self.size):
+                raise Exception("Board is not the right dimensions.")
             self.board=board
 
     def __str__(self):
 
         sideLength= self.renderSideNums()[0]
+        sideNums= self.renderSideNums()[1]
+        topLength= self.renderTopNums()[0]
+        topNums= self.renderTopNums()[1]
+
+
 
 
         string="Size: "+str(self.size)+"\n\n"+"Nums: "+str(self.nums)+"\n\n"+"Board:\n\n" # Headers
-        for row in self.board:
-            string=string+('\t'.join(str(x) for x in row))+"\n" # Board itself
+        for i in range(self.size):
+            string=string+sideNums[i]+"\t"+('\t'.join(str(x) for x in self.board[i]))+"\n" # Board itself
         return string
 
 

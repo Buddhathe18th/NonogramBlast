@@ -10,28 +10,4 @@ import re
 # print(boardTest)
 # print(boardTest.renderRow(0))
 
-
-def allPosibilities(row, s=[]):
-    strings = s
-
-    spaces = row.count(" ")
-    if spaces == 0:
-        return strings
-
-    if spaces==1:
-        temp=row
-        strings.append(temp.replace(" ", "1"))
-        temp = row
-        strings.append(temp.replace(" ", "0"))
-        return strings
-
-    temp = row
-    temp=temp.replace(" ", "1",1)
-    allPosibilities(temp,strings)
-
-    temp = row
-    temp=temp.replace(" ", "0",1)
-    allPosibilities(temp, strings)
-    return strings
-
-print(allPosibilities("   "))
+print(tools.Nonogram.findSolutions([1,1],"01 1"))

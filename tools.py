@@ -136,10 +136,10 @@ class Nonogram:
         check=True
         # Check rows
         for i in range(self.size):
-            regex="^0+"
+            regex="^0*"
             for j in self.nums[i+self.size]:
                 regex=regex+"1{"+str(j)+"}0+"
-            regex=regex+"$"
+            regex=regex[:-1]+"*$"
             row=self.renderRow(i)
 
             if not re.match(regex,row):
@@ -150,7 +150,7 @@ class Nonogram:
             regex="^0+"
             for j in self.nums[i]:
                 regex=regex+"1{"+str(j)+"}0+"
-            regex=regex+"$"
+            regex=regex[:-1]+"*$"
             col=self.renderCol(i)
 
             if not re.match(regex,col):
@@ -179,3 +179,51 @@ class Nonogram:
         temp = temp.replace(" ", "0", 1)
         Nonogram.allPosibilities(temp, strings)
         return strings
+
+
+    @staticmethod
+    def findSolutions(nums,row): # Input rows as 0,1 and spaces, num is the given pattern
+        solutions=Nonogram.allPosibilities(row)
+
+        sol=row
+
+        regex = "^0*"
+        for i in nums:
+            regex = regex + "(1){" + str(i) + "}0+"
+        regex=regex[:-1]+"*$"
+
+        i=0
+        while i<len(solutions):
+            if re.match(regex,solutions[i])==None:
+                solutions.remove(solutions[i])
+                i=i-1
+            i=i+1
+
+        # Check for guaranteed 1s
+        for i in range(len(row)):
+            bool=1
+            for k in solutions:
+                bool=bool and k[i]
+            if bool==1:
+                bool=True
+            else:
+                bool=False
+            if bool and row[i]==" ":
+                sol=sol[0:i]+"1"+sol[i+1:]
+
+        # Check for guaranteed 0s
+        for i in range(len(row)):
+            bool = 1
+            for k in solutions:
+                bool = bool and not int(k[i])
+            if bool == 1:
+                bool = True
+            else:
+                bool = False
+            if bool and row[i] == " ":
+                sol = sol[0:i] + "0" + sol[i + 1:]
+        return sol
+
+
+
+

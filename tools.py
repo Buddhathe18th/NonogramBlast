@@ -136,9 +136,9 @@ class Nonogram:
         check=True
         # Check rows
         for i in range(self.size):
-            regex="^0*"
+            regex="^0+"
             for j in self.nums[i+self.size]:
-                regex=regex+"1{"+str(j)+"}0*"
+                regex=regex+"1{"+str(j)+"}0+"
             regex=regex+"$"
             row=self.renderRow(i)
 
@@ -147,14 +147,35 @@ class Nonogram:
 
         # Check columns
         for i in range(self.size):
-            regex="^0*"
+            regex="^0+"
             for j in self.nums[i]:
-                regex=regex+"1{"+str(j)+"}0*"
+                regex=regex+"1{"+str(j)+"}0+"
             regex=regex+"$"
             col=self.renderCol(i)
 
             if not re.match(regex,col):
                 check=False
         return check
+    @staticmethod
+    def allPosibilities(row, s=[]):
+        strings = s
 
+        spaces = row.count(" ")
+        if spaces == 0:
+            return strings
 
+        if spaces == 1:
+            temp = row
+            strings.append(temp.replace(" ", "1"))
+            temp = row
+            strings.append(temp.replace(" ", "0"))
+            return strings
+
+        temp = row
+        temp = temp.replace(" ", "1", 1)
+        Nonogram.allPosibilities(temp, strings)
+
+        temp = row
+        temp = temp.replace(" ", "0", 1)
+        Nonogram.allPosibilities(temp, strings)
+        return strings

@@ -78,7 +78,7 @@ class Nonogram:
 
         for i in range(topLength):
             temp=""
-            temp = temp + " " * (sideLength+3)
+            temp = temp + " " * (sideLength+3)+"\t"
             for j in range(self.size):
                 temp=temp+topNums[j][i]+"\t"
             temp=temp+"\n"
@@ -86,7 +86,7 @@ class Nonogram:
 
         string=string+"\n"
         for i in range(self.size):
-            string = string + sideNums[i] + "\t"
+            string = string + sideNums[i] + "\t\t"
             for x in self.board[i]:
                 if x=="1":
                     string=string+"1\t"

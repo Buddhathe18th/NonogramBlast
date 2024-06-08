@@ -203,7 +203,7 @@ class Nonogram:
         for i in range(len(row)):
             bool=1
             for k in solutions:
-                bool=bool and k[i]
+                bool=bool and int(k[i])
             if bool==1:
                 bool=True
             else:

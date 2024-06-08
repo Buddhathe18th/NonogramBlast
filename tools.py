@@ -2,7 +2,7 @@ import re
 class Nonogram:
     size = 10  # Default size
     nums = [[]] * 2 * size # Default numbers are empty, columns first, then the row numbers
-    board = [[0] * size] * size # Sub array is each row, input as boolean array
+    board = [[" "] * size] * size # Sub array is each row, input as string
     correct = 0 # If the nums is the known, change to 1, if board is known, change to 2, change to 3 if solved
 
     def __init__(self, size, arr1, arr2=None):
@@ -10,15 +10,23 @@ class Nonogram:
             if not (type(size) == int and size > 0):
                 raise Exception("Size of board has to be a positive integer")
             self.size = size
-            self.nums = [[]] * 2 * size
-            self.board = [[0] * size] * size
+            self.nums=[]
+            for i in range(2*size):
+                self.nums.append([])
+            self.board=[]
+            for i in range(size):
+                t = []
+                for j in range(size):
+                    t.append(" ")
+
+                self.board.append(t)
 
             if type(arr1[0][0]) == int:  # nums
                 if not (len(arr1) == 2 * self.size):
                     raise Exception("Numbers are not the right dimensions.")
                 self.nums = arr1
                 self.correct = 1
-            elif type(arr1[0][0]) == bool:  # board
+            elif type(arr1[0][0]) == str:  # board
                 if not (len(arr1) == self.size):
                     raise Exception("Board is not the right dimensions.")
                 self.board = arr1
@@ -30,8 +38,16 @@ class Nonogram:
             if not(type(size)==int and size>0):
                 raise Exception("Size of board has to be a positive integer")
             self.size = size
-            self.nums = [[]] * 2 * size
-            self.board = [[0] * size] * size
+            self.nums = []
+            for i in range(2 * size):
+                self.nums.append([])
+            self.board = []
+            for i in range(size):
+                t = []
+                for j in range(size):
+                    t.append(" ")
+
+                self.board.append(t)
 
             self.correct=1 # Default
 
@@ -72,10 +88,12 @@ class Nonogram:
         for i in range(self.size):
             string = string + sideNums[i] + "\t"
             for x in self.board[i]:
-                if x==True:
+                if x=="1":
                     string=string+"1\t"
-                else:
+                elif x=="0":
                     string=string+"0\t"
+                else:
+                    string=string+" \t"
             string=string+"\n"
         return string
 
@@ -123,13 +141,13 @@ class Nonogram:
     def renderRow(self,ind):
         row=""
         for i in range(self.size):
-            row=row+str(int(self.board[ind][i]))
+            row=row+str(self.board[ind][i])
         return row
 
     def renderCol(self,ind):
         col=""
         for i in range(self.size):
-            col = col + str(int(self.board[i][ind]))
+            col = col + str(self.board[i][ind])
         return col
 
     def checkValid(self):
@@ -147,7 +165,7 @@ class Nonogram:
 
         # Check columns
         for i in range(self.size):
-            regex="^0+"
+            regex="^0*"
             for j in self.nums[i]:
                 regex=regex+"1{"+str(j)+"}0+"
             regex=regex[:-1]+"*$"
@@ -227,3 +245,34 @@ class Nonogram:
 
 
 
+    def solve(self):
+        while (not self.checkSolved()):
+            # Solving all the columns
+            for i in range(self.size):
+                colNums=self.nums[i]
+                col=self.renderCol(i)
+
+                col=Nonogram.findSolutions(colNums,col)
+
+                for j in range(self.size):
+                    self.board[j][i]=col[j]
+
+            for i in range(self.size):
+                rowNums=self.nums[i+self.size]
+                row=self.renderRow(i)
+
+                row=Nonogram.findSolutions(rowNums,row)
+
+                for j in range(self.size):
+                    self.board[i][j]=row[j]
+
+            print(self)
+
+    def checkSolved(self):
+        if any(' ' in sublist for sublist in self.board):
+            return False
+
+        if not self.checkValid():
+            return False
+
+        return True

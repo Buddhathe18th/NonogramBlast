@@ -6,31 +6,42 @@ import Button
 pygame.init()
 
 screen=pygame.display.set_mode((800,600))
-background = pygame.Surface((800,600))
+
 
 # add all blocks to the background
 def gameboardui(nonogram):
-    y=20
+    y=0
     mygameboardbuttons=[]
     mygameboard=nonogram.board
+    print(mygameboard)
     for i in mygameboard:
         for j in range(nonogram.size):
 
-            mygameboardbuttons.append(Button.Button(10+(j%nonogram.size)*30, y, i[j]))
+            mygameboardbuttons.append(Button.Button((j%nonogram.size)*30, y, i[j]))
+            print(i[j])
             if (j+1)%nonogram.size == 0:
                 y=y+30
     return mygameboardbuttons
 
 run = True
 selectedbuttons = []
-bt=tools.Nonogram(10,[[3,1,1,1],[2,4],[6],[4],[2,2],[1,2],[4],[5],[2,3],[2,5],[2,3],[2,1,1],[1,1,2],[1,2],[1,1],[5,1,1],[6,1,1],[3,3],[4,3],[1,3]])
+bt=tools.Nonogram(10,[[' ', '1', ' ', ' ', '0', '0', '0', '0', '0', ' '], ['1', '0', '0', '1', ' ', ' ', ' ', '0', ' ', ' '], ['0', '1', '0', '1', ' ', ' ', '0', '1', '1', '1'], [' ', '0', ' ', ' ', '1', ' ', ' ', ' ', '1', '0'], ['0', ' ', '0', '0', '0', ' ', ' ', '0', '0', ' '], ['0', '1', '0', ' ', '1', '1', ' ', '0', '0', ' '], [' ', '1', '1', '0', '1', ' ', ' ', ' ', ' ', '1'], ['0', '1', ' ', ' ', '1', '1', '1', ' ', ' ', ' '], [' ', ' ', ' ', '0', ' ', '0', '0', '1', '1', '0'], [' ', '0', '1', ' ', ' ', '0', '1', '0', '1', '1']])
 mygameboardbuttons=gameboardui(bt)
+
+background = pygame.Surface((30*bt.size,30*bt.size))
+
+location_x=100
+location_y=100
 while run:
 
     screen.fill((202, 228, 241))
+    screen.blit(background,(location_x,location_y))
+    print(pygame.mouse.get_pressed())
+
+
 
     for i in mygameboardbuttons:
-        i.draw(screen)
+        i.draw(background,location_x,location_y)
 
     # for x in range(bt.size*bt.size):
     #     if mygameboardbuttons[x].draw(screen):

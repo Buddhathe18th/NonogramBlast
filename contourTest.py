@@ -42,38 +42,52 @@ print(approx)
 gridSize=pow((approx[0][0][0]-approx[1][0][0])**2+(approx[0][0][1]-approx[1][0][1])**2,0.5)/size
 print(gridSize)
 topSize=round(pow((approx[0][0][0]-approx[5][0][0])**2+(approx[0][0][1]-approx[5][0][1])**2,0.5)/gridSize)
-print(topSize)
+sideSize=round(pow((approx[4][0][0]-approx[5][0][0])**2+(approx[4][0][1]-approx[5][0][1])**2,0.5)/gridSize)
+print(sideSize)
 
-topLeftX=approx[0][0][0]
-topLeftY=approx[0][0][1]
+topX=approx[0][0][0]
+topY=approx[0][0][1]
 
-nums=[]
-for i in range(size):
-    print(i)
-    k = []
-    for j in range(topSize):
-
-        img=image[round(topLeftY+gridSize*j)+2:round(topLeftY+gridSize*j+gridSize)-2,round(topLeftX+gridSize*i)+2:round(topLeftX+gridSize*i+gridSize)-2]
-
-        d = pytesseract.image_to_string(img,config='--psm 6')
-
-        k.append(d)
-        print(k)
-    nums.append(k)
-
-print(nums)
-
-mask = np.zeros((gray.shape),np.uint8)
-cv2.drawContours(mask,[best_cnt],0,255,-1)
-cv2.drawContours(mask,[best_cnt],0,0,2)
-
-out = np.zeros_like(gray)
-out[mask == 255] = gray[mask == 255]
+leftX=approx[4][0][0]
+leftY=approx[4][0][1]
 
 
-blur = cv2.GaussianBlur(out, (5,5), 0)
-thresh = cv2.adaptiveThreshold(blur, 255, 1, 1, 11, 2)
-cv2.imshow("thresh1", thresh)
+def topNumbers():
+    nums = []
+    for i in range(size):
+        k = []
+        for j in range(topSize):
+
+            img= image[round(topY + gridSize * j) + 2:round(topY + gridSize * j + gridSize) - 2, round(topX + gridSize * i) + 4:round(topX + gridSize * i + gridSize) - 4]
+
+            d = pytesseract.image_to_string(img,config='--psm 6')
+
+            if d=="":
+                continue
+            k.append(d[:-1])
+            print(k)
+        nums.append(k)
+    return nums
+
+
+def sideNumbers():
+    nums = []
+    for i in range(size):
+        k = []
+        for j in range(sideSize):
+            img = image[round(leftY + gridSize * i) + 2:round(leftY + gridSize * i + gridSize) - 2,round(leftX + gridSize * j) + 4:round(leftX + gridSize * j + gridSize) - 4]
+
+            d = pytesseract.image_to_string(img, config='--psm 6')
+
+            if d == "":
+                continue
+            k.append(d[:-1])
+            print(k)
+        nums.append(k)
+    return nums
+
+nums=topNumbers()+sideNumbers()
+
 
 
 cv2.imshow("Final Image", image)

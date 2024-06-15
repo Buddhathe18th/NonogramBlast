@@ -10,7 +10,7 @@ size=10
 
 image = Image.open('tast.png')
 width,height=image.size
-image=image.resize((2*width,2*height)).convert('RGB')
+image=image.resize((5*width,5*height)).convert('RGB')
 image=np.array(image)
 image=image[:, :, ::-1].copy()
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -72,7 +72,7 @@ def topNumbers():
 
             img= image[round(topY + gridSize * j):round(topY + gridSize * j + gridSize), round(topX + gridSize * i):round(topX + gridSize * i + gridSize)]
 
-            d = pytesseract.image_to_string(img,config='--psm 10 -c tessedit_char_whitelist=0123456789')
+            d = pytesseract.image_to_string(img,config='--psm 8 -c tessedit_char_whitelist=0123456789')
 
             if d=="":
                 continue
@@ -88,7 +88,7 @@ def sideNumbers():
         for j in range(sideSize):
             img = image[round(leftY + gridSize * i) + 4:round(leftY + gridSize * i + gridSize) - 4,round(leftX + gridSize * j) + 4:round(leftX + gridSize * j + gridSize) - 4]
 
-            d = pytesseract.image_to_string(img, config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
+            d = pytesseract.image_to_string(img, config='--psm 8 --oem 3 -c tessedit_char_whitelist=0123456789')
 
             if d == "":
                 continue

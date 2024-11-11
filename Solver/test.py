@@ -1,4 +1,4 @@
-import tools
+import Solver.tools as tools
 import re
 
 # boardTest=tools.Nonogram(2,[[1,1],[2],[0],[2]],[[True, False],[False, False]])
@@ -16,7 +16,6 @@ bt=tools.Nonogram(10,k)
 print(bt)
 bt.solve()
 print(bt)
-# print(bt)
 # print(bt.board)
 # bt.solve()
 # print(bt)

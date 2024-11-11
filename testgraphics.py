@@ -1,6 +1,5 @@
-import pygame
-import tools
-from test import *
+import Solver.tools as tools
+from Solver.test import *
 import Button
 import Nums
 

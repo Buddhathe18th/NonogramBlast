@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="20a39272-9bd3-40ee-9314-a0087cabb1dc" name="Changes" comment="Testing with pytesseract">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/realTest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testgraphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contourTestEasyOCR.py" beforeDir="false" afterPath="$PROJECT_DIR$/contourTestEasyOCR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageRecognitioneasyOCR.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageRecognitioneasyOCR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="6cd6495885fa9c485723a8487941fad5d405b956" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2hVnD6tivJHKInQ4wmD3jyuoqEI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Button.executor&quot;: &quot;Run&quot;,
+    &quot;Python.contourTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.contourTestEasyOCR.executor&quot;: &quot;Run&quot;,
+    &quot;Python.graphics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.imageRecognition.executor&quot;: &quot;Run&quot;,
+    &quot;Python.imageRecognitioneasyOCR.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testgraphics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tools.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/alex/NonogramBlast/pythonProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\alex\NonogramBlast\pythonProject" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.contourTest">
+    <configuration name="contourTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/contourTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="imageRecognition" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imageRecognition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.contourTest" />
+        <item itemvalue="Python.imageRecognition" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="20a39272-9bd3-40ee-9314-a0087cabb1dc" name="Changes" comment="Solved init issues" />
+      <created>1717687992714</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717687992714</updated>
+      <workItem from="1717687994887" duration="482000" />
+      <workItem from="1717709302123" duration="1979000" />
+      <workItem from="1717780810370" duration="34025000" />
+      <workItem from="1718282082021" duration="5034000" />
+      <workItem from="1718370498413" duration="2656000" />
+      <workItem from="1718396721293" duration="12440000" />
+      <workItem from="1718545736536" duration="4641000" />
+      <workItem from="1718651355484" duration="1332000" />
+      <workItem from="1719339344339" duration="258000" />
+      <workItem from="1720013393604" duration="76000" />
+    </task>
+    <task id="LOCAL-00001" summary="render row and columns finished">
+      <option name="closed" value="true" />
+      <created>1717688442956</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717688442956</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test file">
+      <option name="closed" value="true" />
+      <created>1717688450038</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717688450038</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Check Valid method is working">
+      <option name="closed" value="true" />
+      <created>1717710704421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717710704421</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finished the all possibilities method, just need to implement into solving lines">
+      <option name="closed" value="true" />
+      <created>1717785650351</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717785650352</updated>
+    </task>
+    <task id="LOCAL-00005" summary="SOlving algorithm for each row works">
+      <option name="closed" value="true" />
+      <created>1717787698789</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717787698789</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Small error in finding solutions.">
+      <option name="closed" value="true" />
+      <created>1717806396705</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717806396705</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Finished solver">
+      <option name="closed" value="true" />
+      <created>1717866994302</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717866994302</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Redid spacing">
+      <option name="closed" value="true" />
+      <created>1717870314154</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717870314154</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Button class for each individual grid">
+      <option name="closed" value="true" />
+      <created>1717951827370</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717951827370</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Main.py, contains the graphics of the grid">
+      <option name="closed" value="true" />
+      <created>1717951845084</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717951845084</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added all logic to turn on and off buttons">
+      <option name="closed" value="true" />
+      <created>1717969587551</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717969587551</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Half working number recognition, need to patch some edge errors.">
+      <option name="closed" value="true" />
+      <created>1718282201406</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718282201406</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Finished image recognition">
+      <option name="closed" value="true" />
+      <created>1718284891894</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718284891894</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Simple character outputs, improve algorithm">
+      <option name="closed" value="true" />
+      <created>1718399870328</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718399870328</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Tried easyOCR as OCR, issue with edges adding 1s">
+      <option name="closed" value="true" />
+      <created>1718410565835</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1718410565835</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Testing image">
+      <option name="closed" value="true" />
+      <created>1718410596294</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1718410596294</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Testing with pytesseract">
+      <option name="closed" value="true" />
+      <created>1718410648835</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718410648835</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="render row and columns finished" />
+    <MESSAGE value="Test file" />
+    <MESSAGE value="Check Valid method is working" />
+    <MESSAGE value="Finished the all possibilities method, just need to implement into solving lines" />
+    <MESSAGE value="SOlving algorithm for each row works" />
+    <MESSAGE value="Small error in finding solutions." />
+    <MESSAGE value="Finished solver" />
+    <MESSAGE value="Redid spacing" />
+    <MESSAGE value="Button class for each individual grid" />
+    <MESSAGE value="Main.py, contains the graphics of the grid" />
+    <MESSAGE value="Added all logic to turn on and off buttons" />
+    <MESSAGE value="Half working number recognition, need to patch some edge errors." />
+    <MESSAGE value="Finished image recognition" />
+    <MESSAGE value="Simple character outputs, improve algorithm" />
+    <MESSAGE value="Tried easyOCR as OCR, issue with edges adding 1s" />
+    <MESSAGE value="Testing image" />
+    <MESSAGE value="Testing with pytesseract" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing with pytesseract" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/contourTestEasyOCR.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/contourTestEasyOCR.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/pythonProject$contourTestEasyOCR.coverage" NAME="contourTestEasyOCR Coverage Results" MODIFIED="1719339475877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$Button.coverage" NAME="Button Coverage Results" MODIFIED="1717967006050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$contourTest.coverage" NAME="contourTest Coverage Results" MODIFIED="1719339470521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$tools.coverage" NAME="tools Coverage Results" MODIFIED="1718462936650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$imageRecognition.coverage" NAME="imageRecognition Coverage Results" MODIFIED="1718407037971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$imageRecognitioneasyOCR.coverage" NAME="imageRecognitioneasyOCR Coverage Results" MODIFIED="1718548431441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$testgraphics.coverage" NAME="testgraphics Coverage Results" MODIFIED="1718462976640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$test.coverage" NAME="test Coverage Results" MODIFIED="1718461591947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject$graphics.coverage" NAME="graphics Coverage Results" MODIFIED="1718027650554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

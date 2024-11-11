@@ -1,0 +1,340 @@
+Index: tools.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import re\r\nclass Nonogram:\r\n    size = 10  # Default size\r\n    nums = [[]] * 2 * size # Default numbers are empty, columns first, then the row numbers\r\n    board = [[0] * size] * size # Sub array is each row, input as boolean array\r\n    correct = 0 # If the nums is the known, change to 1, if board is known, change to 2, change to 3 if solved\r\n\r\n    def __init__(self, size, arr1, arr2=None):\r\n        if arr2==None:\r\n            if not (type(size) == int and size > 0):\r\n                raise Exception(\"Size of board has to be a positive integer\")\r\n            self.size = size\r\n            self.nums = [[]] * 2 * size\r\n            self.board = [[0] * size] * size\r\n\r\n            if type(arr1[0][0]) == int:  # nums\r\n                if not (len(arr1) == 2 * self.size):\r\n                    raise Exception(\"Numbers are not the right dimensions.\")\r\n                self.nums = arr1\r\n                self.correct = 1\r\n            elif type(arr1[0][0]) == bool:  # board\r\n                if not (len(arr1) == self.size):\r\n                    raise Exception(\"Board is not the right dimensions.\")\r\n                self.board = arr1\r\n                self.correct = 2\r\n            else:\r\n                raise Exception(\"Input array is not the right dimensions\")\r\n\r\n        else:\r\n            if not(type(size)==int and size>0):\r\n                raise Exception(\"Size of board has to be a positive integer\")\r\n            self.size = size\r\n            self.nums = [[]] * 2 * size\r\n            self.board = [[0] * size] * size\r\n\r\n            self.correct=1 # Default\r\n\r\n            if arr1!=0 and arr2!=0:\r\n                check=True\r\n                if not(len(arr1) == 2 * self.size and len(arr2) == self.size):\r\n                    check=False\r\n                for i in arr2:\r\n                    if len(i)!=self.size:\r\n                        check=False\r\n                if not check:\r\n                    raise Exception(\"Numbers and boards are not the right dimensions.\")\r\n                self.checkValid() # TODO: write checkValid()\r\n                self.nums=arr1\r\n                self.board=arr2\r\n\r\n    def __str__(self):\r\n\r\n        sideLength= self.renderSideNums()[0]\r\n        sideNums= self.renderSideNums()[1]\r\n        topLength= self.renderTopNums()[0]\r\n        topNums= self.renderTopNums()[1]\r\n\r\n\r\n\r\n\r\n        string=\"Size: \"+str(self.size)+\"\\n\\n\"+\"Nums: \"+str(self.nums)+\"\\n\\n\"+\"Board:\\n\\n\" # Headers\r\n\r\n        for i in range(topLength):\r\n            temp=\"\"\r\n            temp = temp + \" \" * (sideLength+3)\r\n            for j in range(self.size):\r\n                temp=temp+topNums[j][i]+\"\\t\"\r\n            temp=temp+\"\\n\"\r\n            string=string+temp\r\n\r\n        string=string+\"\\n\"\r\n        for i in range(self.size):\r\n            string = string + sideNums[i] + \"\\t\"\r\n            for x in self.board[i]:\r\n                if x==True:\r\n                    string=string+\"1\\t\"\r\n                else:\r\n                    string=string+\"0\\t\"\r\n            string=string+\"\\n\"\r\n        return string\r\n\r\n\r\n    def renderSideNums(self):\r\n        sideLength = 0  # How many to shift right\r\n        for i in range(self.size, 2 * self.size):\r\n            temp = len(self.nums[i]) - 1\r\n            for j in self.nums[i]:\r\n                temp = temp + len(str(j))\r\n\r\n            if sideLength < temp:\r\n                sideLength = temp\r\n\r\n        sideBar=[\"\"]*self.size\r\n        for i in range(self.size):\r\n            temp=\"\"\r\n            for j in self.nums[i+self.size]:\r\n                temp=temp+str(j)+\" \"\r\n            temp=temp[:-1]\r\n            sideBar[i]=temp.rjust(sideLength)\r\n\r\n        return [sideLength,sideBar]\r\n\r\n    def renderTopNums(self):\r\n        topLength=0 # How many to shift down\r\n        for i in range(0,self.size):\r\n            temp=len(self.nums[i])-1\r\n            for j in self.nums[i]:\r\n                temp = temp + len(str(j))\r\n\r\n            if topLength < temp:\r\n                topLength = temp\r\n\r\n        topBar = [\"\"] * self.size\r\n        for i in range(self.size):\r\n            temp = \"\"\r\n            for j in self.nums[i]:\r\n                temp = temp + str(j) + \" \"\r\n            temp = temp[:-1]\r\n            topBar[i] = temp.rjust(topLength)\r\n\r\n        return [topLength,topBar]\r\n\r\n    def renderRow(self,ind):\r\n        row=\"\".join(self.board[ind])\r\n        return row\r\n\r\n\r\n    def checkValid(self):\r\n        for i in range(0,self.size):\r\n            x=1\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tools.py b/tools.py
+--- a/tools.py	
++++ b/tools.py	
+@@ -100,7 +100,7 @@
+ 
+         return [sideLength,sideBar]
+ 
+-    def renderTopNums(self):
++    def renderTopNums(self, ind):
+         topLength=0 # How many to shift down
+         for i in range(0,self.size):
+             temp=len(self.nums[i])-1
+@@ -119,7 +119,10 @@
+             topBar[i] = temp.rjust(topLength)
+ 
+         return [topLength,topBar]
+-
++        col=""
++        for i in range(self.size):
++            col=col+self.nums[i][ind]
++        return col
+     def renderRow(self,ind):
+         row="".join(self.board[ind])
+         return row
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/modules.xml	
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/pythonProject.iml" filepath="$PROJECT_DIR$/.idea/pythonProject.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/pythonProject.iml
+===================================================================
+diff --git a/.idea/pythonProject.iml b/.idea/pythonProject.iml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/pythonProject.iml	
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.venv" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/misc.xml
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/misc.xml	
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.11 (pythonProject)" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (pythonProject)" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/workspace.xml	
+@@ -0,0 +1,187 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="3a2e214f-5837-4de2-ab4b-fe661bc198ed" name="Changes" comment="Solved init issues">
++      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools.py" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Python Script" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="ProjectColorInfo"><![CDATA[{
++  "associatedIndex": 7
++}]]></component>
++  <component name="ProjectId" id="2hVMkJ8tqN3IqQKWEsmCSBOxS33" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Python.graphics.executor": "Run",
++    "Python.test.executor": "Run",
++    "Python.tools.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "master",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "vue.rearranger.settings.migration": "true"
++  }
++}]]></component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
++      </set>
++    </attachedChunks>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="3a2e214f-5837-4de2-ab4b-fe661bc198ed" name="Changes" comment="" />
++      <created>1717674932507</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1717674932507</updated>
++      <workItem from="1717674954115" duration="11641000" />
++    </task>
++    <task id="LOCAL-00001" summary="Started Nonogram class! Started initialization function. Started with __str__() function and checkValid()">
++      <option name="closed" value="true" />
++      <created>1717675812611</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1717675812611</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Fixed __str__ function to return instead of print">
++      <option name="closed" value="true" />
++      <created>1717676390415</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1717676390415</updated>
++    </task>
++    <task id="LOCAL-00003" summary="Found topLength and sideLength of printing">
++      <option name="closed" value="true" />
++      <created>1717677243727</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1717677243727</updated>
++    </task>
++    <task id="LOCAL-00004" summary="Finished renderSideNums">
++      <option name="closed" value="true" />
++      <created>1717677902511</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1717677902511</updated>
++    </task>
++    <task id="LOCAL-00005" summary="Finished renderTopNums">
++      <option name="closed" value="true" />
++      <created>1717678225788</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1717678225788</updated>
++    </task>
++    <task id="LOCAL-00006" summary="Checked dimensions of inputs">
++      <option name="closed" value="true" />
++      <created>1717678952854</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1717678952854</updated>
++    </task>
++    <task id="LOCAL-00007" summary="Created grid">
++      <option name="closed" value="true" />
++      <created>1717681914911</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1717681914911</updated>
++    </task>
++    <task id="LOCAL-00008" summary="Solved init issues">
++      <option name="closed" value="true" />
++      <created>1717687806884</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1717687806884</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Started Nonogram class! Started initialization function. Started with __str__() function and checkValid()" />
++    <MESSAGE value="Fixed __str__ function to return instead of print" />
++    <MESSAGE value="Found topLength and sideLength of printing" />
++    <MESSAGE value="Finished renderSideNums" />
++    <MESSAGE value="Finished renderTopNums" />
++    <MESSAGE value="Checked dimensions of inputs" />
++    <MESSAGE value="Created grid" />
++    <MESSAGE value="Solved init issues" />
++    <option name="LAST_COMMIT_MESSAGE" value="Solved init issues" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/test.py</url>
++          <line>4</line>
++          <option name="timeStamp" value="2" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/tools.py</url>
++          <line>82</line>
++          <option name="timeStamp" value="3" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/pythonProject$tools.coverage" NAME="tools Coverage Results" MODIFIED="1717681871788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/pythonProject$test.coverage" NAME="test Coverage Results" MODIFIED="1717686896918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/pythonProject$graphics.coverage" NAME="graphics Coverage Results" MODIFIED="1717682308416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/inspectionProfiles/profiles_settings.xml	
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/vcs.xml
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/vcs.xml	
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: test.py
+===================================================================
+diff --git a/test.py b/test.py
+new file mode 100644
+--- /dev/null	
++++ b/test.py	
+@@ -0,0 +1,26 @@
++import tools
++
++#boardTest=tools.Nonogram(2,[[1,2,3],[2,4],[1,2,3],[2,4]])
++#t=tools.Nonogram(1,[[1],[1]],[[True]])
++boardTest=tools.Nonogram(2,[[1,2,3],[2,4],[1,2,3],[2,4]],[[True,False],[False,True]])
++
++
++
++print(boardTest.render)
++#
++# #print(boardTest)
++#
++# arr=[[],[],[1,2,3],[]]
++# def test(arr):
++#     sideLength = 0
++#     for i in range(2, 4):
++#         temp = len(arr[i])-1
++#         for j in arr[i]:
++#             temp=temp+len(str(j))
++#
++#         if sideLength < temp:
++#             sideLength = temp
++#
++#     print(sideLength)
++#
++# test(arr)
+\ No newline at end of file

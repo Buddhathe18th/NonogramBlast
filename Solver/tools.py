@@ -261,7 +261,9 @@ class Nonogram:
 
         consecutiveSpaces=len(re.findall("( )+",line))
         spaces=len(re.findall(" ",line))
-        return score+consecutiveSpaces-spaces
+        return score+consecutiveSpaces+spaces
+
+   
 
     def solve(self):
         while (not self.checkSolved()):

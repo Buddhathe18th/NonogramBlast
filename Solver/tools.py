@@ -5,6 +5,11 @@ class Nonogram:
     board = [[" "] * size] * size # Sub array is each row, input as string
     correct = 0 # If the nums is the known, change to 1, if board is known, change to 2, change to 3 if solved
 
+
+    # Technically 3 constructors, size must be included, showing the size of the board
+    # The three different possibilities is to include the numbers, the board, or both
+
+
     def __init__(self, size, arr1, arr2=None):
         if arr2==None:
             if not (type(size) == int and size > 0):
@@ -242,8 +247,21 @@ class Nonogram:
                 sol = sol[0:i] + "0" + sol[i + 1:]
         return sol
 
+    # Define a function where the score of a line is calculated
+    # A line with a higher score in theory should have most valid moves at this time.
 
+    def lineScore(self, nums,line):
+        
+        score=0
 
+        sum=0
+        for i in nums:
+            sum=sum+i
+        score=sum/len(nums)-1
+
+        consecutiveSpaces=len(re.findall("( )+",line))
+        spaces=len(re.findall(" ",line))
+        return score+consecutiveSpaces-spaces
 
     def solve(self):
         while (not self.checkSolved()):

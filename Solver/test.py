@@ -27,11 +27,9 @@ import re
 #
 # print(tools.Nonogram.findSolutions([6],""))
 
-boardTest=tools.Nonogram(2,[[0],[2],[1],[1]])
+boardTest=tools.Nonogram(5,[[1,1],[1],[3],[3],[4],[1,1],[1],[3],[3],[4]])
 # print(boardTest.renderRow(1))
 # print(boardTest.allPosibilities(boardTest.renderRow(1)))
 # print(boardTest.findSolutions([2],"  "))
 
-print(boardTest.lineScore([1,1,1],"     "))
-print(boardTest.lineScore([4],"     "))
-print(boardTest.lineScore([4]," 111 "))
+boardTest.testSolve()

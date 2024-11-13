@@ -263,7 +263,42 @@ class Nonogram:
         spaces=len(re.findall(" ",line))
         return score+consecutiveSpaces+spaces
 
-   
+    def testSolve(self):
+        lines=[]
+        for i in range(self.size):
+            lines.append(self.lineScore(self.nums[i],self.renderCol(i)))
+        for i in range(self.size):
+            lines.append(self.lineScore(self.nums[i+self.size],self.renderRow(i)))
+        
+
+        s = sorted(enumerate(lines), key=lambda x: x[1],reverse=True)
+        
+        for i in range(len(s)//2):
+            lineNums=self.nums[s[i][0]]
+            if s[i][0]<self.size:
+                line=self.renderCol(i)
+            else:
+                line=self.renderRow(i-self.size)
+            
+            line=Nonogram.findSolutions(lineNums,line)
+
+            if s[i][0]<self.size:
+                for j in range(self.size):
+                    self.board[j][i]=line[j]
+            else:
+                for j in range(self.size):
+                    self.board[i][j]=line[j]
+        
+        print(self)
+        
+        if self.checkSolved():
+            print("done")
+        else:
+            print(1,end=" ")
+            self.testSolve()
+            
+    
+
 
     def solve(self):
         while (not self.checkSolved()):

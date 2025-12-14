@@ -1,4 +1,4 @@
-import tools
+from Solver import tools
 import re
 
 # boardTest=tools.Nonogram(2,[[1,1],[2],[0],[2]],[[True, False],[False, False]])
